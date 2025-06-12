@@ -6,37 +6,40 @@ import ProjectCard from '../components/ProjectCard.astro'
 import Label from '../components/Label.astro'
 import SkillLayout from '../components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
+import LineMap from '@/components/LineMap.astro'
 
 import { Image } from 'astro:assets'
 import astro from '../assets/about-astro.png'
 
 import { getAllPosts, sortMDByDate } from '@/utils'
 
-const languages = ['lorem', 'ipsum']
-const frontend = ['lorem', 'ipsum', 'lorem', 'ipsum', 'lorem', 'ipsum', 'lorem']
-const backend = ['lorem', 'ipsum', 'lorem', 'ipsum']
-const others = ['lorem', 'ipsum', 'lorem', 'ipsum', 'lorem']
+const languages = ['Español | Nativo', 'Ingles | B1']
+const frontend = ['React', 'Angular', 'TypeScript']
+const backend = ['Java', 'Spring', 'Golang', 'PHP']
+const others = ['Cobol', 'Z/os']
 
 const MAX_POSTS = 10
 const allPosts = await getAllPosts()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 ---
 
-<PageLayout meta={{ title: 'Home' }}>
+<PageLayout meta={{ title: 'Inicio' }}>
 	<div class='flex w-full flex-col gap-y-10'>
 		<section class='flex flex-col items-center gap-y-7'>
 			<Image
 				src={astro}
 				alt='profile photo'
-				class='h-28 w-auto rounded-full bg-[#FFBE98] p-2'
+				class='h-36 w-auto rounded-2xl bg-[transparent] p-1'
 				loading='eager'
 			/>
 
-			<div class='flex flex-col items-center gap-y-4'>
-				<h1 class='text-3xl font-bold'>Lorem ipsum dolor</h1>
+			<div class='flex flex-col items-center gap-y-7'>
+				<h1 class='text-2xl font-bold  text-gray-500 dark:text-white'>
+					"¡Hey! Genial que pases por mi perfil 😃."
+				</h1>
 				<a
 					href='https://github.com/srleom/astro-theme-resume.git'
-					class='flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
+					class='flex flex-row items-center gap-x-3 rounded-sm border border-2 px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md dark:border-white'
 				>
 					<span class='relative flex items-center justify-center'>
 						<span
@@ -45,10 +48,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 						<span class='relative inline-flex h-2 w-2 rounded-full bg-green-400'></span>
 					</span>
 
-					<p class='font-medium'>Get free template</p>
+					<p class='font-medium'>Descargar CV 📄</p>
 				</a>
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-					<Label title='Lorem Ipsum'>
+					<Label title='tadeoaragoon@gmail.com | 56-60-35-12-17'>
 						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='h-5 w-5' slot='icon'
 							><path
 								fill='currentColor'
@@ -56,7 +59,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 							></path></svg
 						>
 					</Label>
-					<Label title='Ipsum'>
+					<Label title='CDMX, México'>
 						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='h-5 w-5' slot='icon'
 							><path
 								fill='currentColor'
@@ -65,7 +68,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 						>
 					</Label>
 					<Label
-						title='Connect on Linkedin'
+						title='Linkedin'
 						as='a'
 						href='https://www.linkedin.com/in/example/'
 						target='_blank'
@@ -85,29 +88,39 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			</div>
 		</section>
 
-		<Section title='About'>
-			<p class='text-muted-foreground'>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis atque quia omnis
-				consectetur, voluptas praesentium veniam blanditiis ratione asperiores accusantium laborum
-				odit commodi quis deserunt incidunt et dolor iure ut! Lorem ipsum dolor sit, amet
-				consectetur adipisicing elit. Alias quia, doloribus ut beatae perspiciatis voluptatibus.
+		<Section title='Sobre mi'>
+			<Card
+				heading=''
+				subheading=''
+				date=''
+				imagePath=''
+				altText='Sobre mi'
+				imageClass='h-12 w-auto md:-left-16'
+			>
+		    <p class='text-xl font-bold text-sky-600 dark:text-yellow-500 '>Desarrollador Full Stack | Análista de datos.</p>
+			<p class='text-[17px] font-medium text-gray-600 dark:text-gray-200'>
+				Con más de 5 años de experiencia en desarrollo web (frontend, backend y análisis de datos)
+				en DFLL distribucuines farmacéuticas, donde he contribuido a soluciones técnicas escalables.
+				Desarrollo de aplicaciones  Java/Spring con experiencia en arquitecturas web escalables, implementando APIs robustas, integración de datos y optimización de sistemas.
 			</p>
+			</Card>
+			
 		</Section>
-		{
-			allPostsByDate.length > 0 && (
-				<Section title='Posts'>
-					<ul class='flex flex-col gap-y-2'>
-						{allPostsByDate.map((p) => (
-							<li class='flex flex-col gap-x-2 sm:flex-row'>
-								<PostPreview post={p} />
-							</li>
-						))}
-					</ul>
-				</Section>
-			)
-		}
 
-		<Section title='Experience'>
+		<Section title='Experiencia'>
+					<Card
+				heading=''
+				subheading=''
+				date=''
+				imagePath=''
+				altText='Sobre mi'
+				imageClass='h-12 w-auto md:-left-16'
+			>
+		  <LineMap />
+			</Card>
+				
+		
+
 			<Card
 				heading='Lorem Ipsum'
 				subheading='Sit amet consectetur'
@@ -135,7 +148,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			/>
 		</Section>
 
-		<Section title='Education'>
+		<Section title='Educación'>
 			<Card
 				heading='Lorem Ipsum'
 				subheading='Sit amet consectetur'
@@ -163,7 +176,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			/>
 		</Section>
 
-		<Section title='Projects'>
+		<Section title='Proyectos'>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
 					href='https://www.google.com'
@@ -184,7 +197,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			</div>
 		</Section>
 
-		<Section title='Certifications'>
+		<Section title='Certificaciones'>
 			<Card
 				as='a'
 				heading='Lorem ipsum, dolor sit amet consectetur adipisicing.'
@@ -207,13 +220,30 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			/>
 		</Section>
 
-		<Section title='Skills'>
-			<SkillLayout title='Languages' skills={languages} />
+		<Section title='Habilidades'>
+			<SkillLayout title='Idiomas' skills={languages} />
 			<SkillLayout title='Frontend' skills={frontend} />
 			<SkillLayout title='Backend' skills={backend} />
-			<SkillLayout title='Others' skills={others} />
+			<SkillLayout title='Otros' skills={others} />
 		</Section>
+
+		{
+			allPostsByDate.length > 0 && (
+				<Section title='Posts'>
+					<ul class='flex flex-col gap-y-2'>
+						{allPostsByDate.map((p) => (
+							<li class='flex flex-col gap-x-2 sm:flex-row'>
+								<PostPreview post={p} />
+							</li>
+						))}
+					</ul>
+				</Section>
+			)
+		}
 	</div>
+
+	<div></div>
+
 	<a
 		href='https://github.com/srleom/astro-theme-resume.git'
 		class='mt-16 flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
@@ -225,6 +255,6 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			<span class='relative inline-flex h-2 w-2 rounded-full bg-green-400'></span>
 		</span>
 
-		<p class='font-medium'>Get free template</p>
+		<p class='font-medium'>Descargar CV</p>
 	</a>
 </PageLayout>

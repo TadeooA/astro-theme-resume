@@ -40,25 +40,36 @@
 		--radius: 0.5rem;
 	}
 	.dark {
-		--background: 240 10% 3.9%;
-		--foreground: 0 0% 98%;
-		--card: 240 10% 3.9%;
-		--card-foreground: 0 0% 98%;
-		--popover: 240 10% 3.9%;
-		--popover-foreground: 0 0% 98%;
-		--primary: 0 0% 98%;
-		--primary-foreground: 240 5.9% 10%;
-		--secondary: 240 3.7% 15.9%;
-		--secondary-foreground: 0 0% 98%;
-		--muted: 240 3.7% 15.9%;
-		--muted-foreground: 240 5% 64.9%;
-		--accent: 240 3.7% 15.9%;
-		--accent-foreground: 0 0% 98%;
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 0 0% 98%;
-		--border: 240 3.7% 15.9%;
-		--input: 240 3.7% 15.9%;
-		--ring: 240 4.9% 83.9%;
+		  /* Base */
+  --background: 225 25% 14%;        /* #1a2035 - Azul oscuro frío */
+  --foreground: 0 0% 98%;           /* #f8fafc - Blanco puro (texto principal) */
+
+  /* Componentes */
+  --card: 225 28% 12%;              /* #151a2a - Más oscuro que el fondo, con tono azul */
+  --card-foreground: 0 0% 98%;      /* Texto claro en tarjetas */
+  --popover: 225 28% 10%;           /* #101523 - Para elementos emergentes */
+  --popover-foreground: 0 0% 98%;
+
+  /* Interactivos */
+  --primary: 212 80% 60%;           /* #58a6ff - Azul brillante (botones primarios) */
+  --primary-foreground: 225 25% 14%;/* Fondo oscuro para contraste */
+  --secondary: 225 20% 20%;         /* #232a45 - Azul intermedio (hover/segundarios) */
+  --secondary-foreground: 0 0% 98%;
+
+  /* Neutrales */
+  --muted: 225 15% 25%;            /* #2a3152 - Gris azulado (para fondos suaves) */
+  --muted-foreground: 225 10% 65%;  /* #9ca3c2 - Texto secundario */
+  --accent: 225 20% 22%;            /* #1e2542 - Para resaltes sutiles */
+  --accent-foreground: 0 0% 98%;
+
+  /* Estados */
+  --destructive: 0 70% 40%;         /* #dc2626 - Rojo intenso */
+  --destructive-foreground: 0 0% 98%;
+  --border: 225 20% 25%;            /* #252d4d - Bordes visibles pero discretos */
+  --input: 225 20% 20%;             /* Coherente con --secondary */
+
+  /* Focus */
+  --ring: 212 80% 60%;              /* Mismo que primary para consistencia */
 	}
 }
 
