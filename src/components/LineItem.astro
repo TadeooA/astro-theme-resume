@@ -1,0 +1,114 @@
+---
+// Timeline.astro
+interface ExperienceItem {
+  company: string;
+  position: string;
+  description: string[];
+  period: string;
+  isActive?: boolean;
+  icon?: string;
+}
+
+interface Props {
+  items: ExperienceItem[];
+  color?: string;
+}
+
+const { items, color = "#daa520" } = Astro.props;
+---
+
+
+<div
+  class='bg-white[box-shadow:var(--shadow)] h-auto w-5/5 rounded-2xl [--background:#fff]
+   [--border:#2e2e2e] [--color:#000] [--muted-foreground:#9c9c9c] [--muted:#242424]
+    [--shadow:rgba(60,64,67,0.3)_0_1px_2px_0,rgba(60,64,67,0.15)_0_2px_6px_2px]'
+>
+  <div
+    class='[&_[data-tl=item]]:before:[var(--timeline-line-right:auto)] p-4
+     pl-0 [--offset:calc(var(--tl-bullet-size)/2+var(--tl-line-width)/2)]
+     [--tl-bullet-size:25px]
+      [--tl-color:${color}]
+       [--tl-line-width:3px] [--tl-rounded:9999px]
+        [&_[data-child=body]]:pl-[var(--offset)]
+         [&_[data-child=bullet]]:left-[calc((var(--tl-bullet-size)/2+var(--tl-line-width)/2)*-1)]
+         [&_[data-child=bullet]]:right-auto [&_[data-tl=item]]:pl-[var(--offset)] [&_[data-tl=item]]:before:[--timeline-line-left:calc(var(--tl-line-width)*-1)]'
+    data-align='left'
+    role='group'
+  >
+    {
+      items.map((item, index) => (
+        <div
+          class='group relative pb-4 text-left text-zinc-600 [--item-border-color:#424242] [--item-line:var(--tl-line-width)_var(--tli-border-style,solid)_var(--item-border-color)] [--tli-border-style:dotted] before:pointer-events-none before:absolute before:-bottom-8 before:left-[var(--timeline-line-left,0)] before:right-[var(--timeline-line-right,0)] before:top-0 before:[border-inline-start:var(--item-line)] before:[display:var(--timeline-line-display,none)] dark:text-zinc-500 dark:[--item-border-color:#424242] [&:where(:not(:first-of-type))]:mt-8 [&:where(:not(:last-of-type))]:[--timeline-line-display:block] [&:where([data-line-active])]:before:border-[var(--tli-color,var(--tl-color))] [&_[data-child=bullet]]:data-[line-active]:border-[var(--tli-color,var(--tl-color))]'
+          data-line-active={item.isActive ? 'true' : 'false'}
+          data-tl='item'
+        >
+          <div
+            class='absolute top-0 flex h-[var(--tl-bullet-size)]
+            w-[var(--tl-bullet-size)] cursor-pointer items-center
+            justify-center rounded-[var(--tl-rounded)] border-solid
+            border-[var(--muted)] bg-[#fff] text-[var(--muted)] [border-width:var(--tli-line-width,var(--tl-line-width))]'
+            data-active={item.isActive ? 'true' : 'false'}
+            data-child='bullet'
+          >
+            {item.icon ? (
+              <span class="text-xs" set:html={item.icon} />
+            ) : (
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='1em'
+                height='1em'
+                stroke-linejoin='round'
+                stroke-linecap='round'
+                viewBox='0 0 24 24'
+                stroke-width='2'
+                fill='none'
+                stroke='currentColor'
+              >
+                <path d='M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0'></path>
+                <path d='M12 3l0 6'></path>
+                <path d='M12 15l0 6'></path>
+              </svg>
+            )}
+          </div>
+
+          <div class='' data-child='body'>
+            <span class='font-mono font-semibold text-xl leading-none text-sky-600 dark:dark:text-yellow-500'>
+              {item.company}
+            </span>
+            <div class='mt-0' role='group'>
+              <p class='flex flex-row flex-nowrap items-center gap-2 text-zinc-600 dark:text-white'>
+                <span class='line-clamp-10 font-mono text-lg font-semibold text-gray-500 dark:text-white'>
+                  {item.position}
+                </span>
+              </p>
+            </div>
+
+            <div
+              class='white-space-break-spaces scrollbar mt-2 line-clamp-10 flex-col 
+              items-start font-mono text-sm font-semibold text-gray-500 dark:text-gray-300 [&_*]:font-mono'
+            >
+              {item.description.map((desc, i) => (
+                <>
+                  {desc}
+                  {i < item.description.length - 1 && <br />}
+                </>
+              ))}
+            </div>
+            <div
+              class='relative mt-2 flex w-max flex-row items-center gap-2 text-sm [text-align:inherit]'
+              role='group'
+            >
+              <time class='flex flex-row items-center gap-2 font-mono text-lg'>{item.period}</time>
+              <button
+                class='!absolute -bottom-6 left-0 mt-2 text-lg underline dark:text-gray-200'
+                type='button'
+              >
+                más
+              </button>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

@@ -7,6 +7,8 @@ import Label from '../components/Label.astro'
 import SkillLayout from '../components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
 import LineMap from '@/components/LineMap.astro'
+import LineItem from '@/components/LineItem.astro'
+import { experienceItem, educationItem,certificationItem} from '../utils/data'
 
 import { Image } from 'astro:assets'
 import astro from '../assets/about-astro.png'
@@ -116,9 +118,12 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				altText='Sobre mi'
 				imageClass='h-12 w-auto md:-left-16'
 			>
-		  <LineMap />
+	           <LineItem items={experienceItem}></LineItem>
 			</Card>
 				
+		
+		
+		 
 		
 
 			<Card
