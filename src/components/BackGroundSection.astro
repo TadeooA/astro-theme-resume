@@ -1,27 +1,32 @@
 ---
-// src/components/SVGBackground.astro
+// src/components/SVGBackgroundSection.astro
 
 interface SVGShape {
-	path?: string
-	circle?: {
-		cx: number
-		cy: number
-		r: number
-	}
-	custom?: string
+  custom?: string;
 }
 
-type ColorKey = 'indigo' | 'pink' | 'teal' | 'amber' | 'purple' | 'gray'
-type OpacityKey = '5' | '10' | '15' // Opacidades más bajas
+type ColorKey = 'indigo' | 'pink' | 'teal' | 'amber' | 'purple' | 'gray';
+type OpacityKey = '5' | '10' | '15';
+
+// Props del componente
+export interface Props {
+  sectionHeight?: string;  // Altura de la sección (ej. "100vh")
+  elementsCount?: number;  // Cantidad de elementos en esta sección
+}
+
+// Valores por defecto
+const { 
+  sectionHeight = "100vh", 
+  elementsCount = 3 
+} = Astro.props;
 
 const CONFIG = {
-	elementsPerSection: 2, // Reducido para menos densidad
-	minSize: 2,
-	maxSize: 2,
-	minDistance: 30, // Distancia mínima entre elementos (en %)
-	sections: 6
-}
+  minSize: 2,
+  maxSize: 4,
+  minDistance: 20 // Distancia mínima entre elementos (%)
+};
 
+// SVGs personalizados (los mismos que tenías)
 const customSVGs = {
 	square: `<svg fill="#f85d5d" width="64px" height="64px" viewBox="-20 -20 140.00 140.00" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" stroke="#f85d5d" stroke-width="2.1"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><path d="M94.92371,5.61914A1.0028,1.0028,0,0,0,94,5H30a1.0065,1.0065,0,0,0-.70715.29291l-24,24A1.01,1.01,0,0,0,5,30.00031V94a1,1,0,0,0,1,1H70l.0105-.00214a.9962.9962,0,0,0,.69659-.29077l24-24A1.01425,1.01425,0,0,0,95,70V6A1.00069,1.00069,0,0,0,94.92371,5.61914ZM29.06958,8.3446A.9951.9951,0,0,0,31,8V7H91.58575l-22,22H8.41418ZM8.30005,93A.99924.99924,0,0,0,7,91.69989V31H29v1a1,1,0,0,0,2,0V31H69V69H68a1,1,0,0,0,0,2h1V93ZM71,30.41418,92.99994,8.41425,93,69H92a.99512.99512,0,0,0-.34467,1.93042L71,91.58575Z"></path><path d="M30,61a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V62A1,1,0,0,0,30,61Z"></path><path d="M30,53a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V54A1,1,0,0,0,30,53Z"></path><path d="M30,17a1,1,0,0,0,1-1V14a1,1,0,0,0-2,0v2A1,1,0,0,0,30,17Z"></path><path d="M30,45a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V46A1,1,0,0,0,30,45Z"></path><path d="M31,24V22a1,1,0,0,0-2,0v2a1,1,0,0,0,2,0Z"></path><path d="M30,37a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V38A1,1,0,0,0,30,37Z"></path><path d="M54,69H52a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"></path><path d="M62,69H60a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"></path><path d="M78,69H76a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"></path><path d="M86,69H84a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"></path><path d="M46,69H44a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"></path><path d="M38,69H36a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"></path><path d="M30.92279,69.6178a.99931.99931,0,0,0-1.626-.32752l-.004.00263L27.8786,70.70709a1,1,0,1,0,1.41425,1.41419l1.41424-1.41419a1.00368,1.00368,0,0,0,.2157-1.08929Z"></path><path d="M23.636,74.94971,22.22174,76.364A1,1,0,0,0,23.636,77.77814L25.05023,76.364A1,1,0,0,0,23.636,74.94971Z"></path><path d="M17.97913,80.60657l-1.41425,1.41424A1,1,0,0,0,17.97913,83.435l1.41424-1.41419a1,1,0,0,0-1.41424-1.41424Z"></path><path d="M12.32227,86.26343,10.908,87.67767a1,1,0,0,0,1.41425,1.41419l1.41424-1.41425a1,1,0,1,0-1.41424-1.41418Z"></path></g></svg>`,
 	square2: `<svg fill="#52abff" height="71px" width="71px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100.00 100.00" xml:space="preserve" stroke="#52abff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="turf-centroid"> <circle cx="50.178" cy="49.646" r="7.796"></circle> <path d="M85.342,21.482c-1.104,0-2-0.896-2-2v-3h-3c-1.104,0-2-0.896-2-2s0.896-2,2-2h5c1.104,0,2,0.896,2,2v5 C87.342,20.587,86.446,21.482,85.342,21.482z"></path> <path d="M71.724,16.482h-8.618c-1.104,0-2-0.896-2-2s0.896-2,2-2h8.618c1.104,0,2,0.896,2,2S72.828,16.482,71.724,16.482z"></path> <path d="M54.487,16.482H45.87c-1.104,0-2-0.896-2-2s0.896-2,2-2h8.618c1.104,0,2,0.896,2,2S55.592,16.482,54.487,16.482z"></path> <path d="M37.252,16.482h-8.618c-1.104,0-2-0.896-2-2s0.896-2,2-2h8.618c1.104,0,2,0.896,2,2S38.356,16.482,37.252,16.482z"></path> <path d="M15.016,21.482c-1.104,0-2-0.896-2-2v-5c0-1.104,0.896-2,2-2h5c1.104,0,2,0.896,2,2s-0.896,2-2,2h-3v3 C17.016,20.587,16.12,21.482,15.016,21.482z"></path> <path d="M15.016,73.19c-1.104,0-2-0.896-2-2v-8.618c0-1.104,0.896-2,2-2s2,0.896,2,2v8.618C17.016,72.295,16.12,73.19,15.016,73.19 z"></path> <path d="M15.016,55.954c-1.104,0-2-0.896-2-2v-8.618c0-1.104,0.896-2,2-2s2,0.896,2,2v8.618 C17.016,55.059,16.12,55.954,15.016,55.954z"></path> <path d="M15.016,38.719c-1.104,0-2-0.896-2-2v-8.618c0-1.104,0.896-2,2-2s2,0.896,2,2v8.618 C17.016,37.823,16.12,38.719,15.016,38.719z"></path> <path d="M20.016,86.809h-5c-1.104,0-2-0.896-2-2v-5c0-1.104,0.896-2,2-2s2,0.896,2,2v3h3c1.104,0,2,0.896,2,2 S21.12,86.809,20.016,86.809z"></path> <path d="M71.723,86.809h-8.617c-1.104,0-2-0.896-2-2s0.896-2,2-2h8.617c1.104,0,2,0.896,2,2S72.827,86.809,71.723,86.809z"></path> <path d="M54.487,86.809h-8.618c-1.104,0-2-0.896-2-2s0.896-2,2-2h8.618c1.104,0,2,0.896,2,2S55.592,86.809,54.487,86.809z"></path> <path d="M37.251,86.809h-8.618c-1.104,0-2-0.896-2-2s0.896-2,2-2h8.618c1.104,0,2,0.896,2,2S38.356,86.809,37.251,86.809z"></path> <path d="M85.342,86.809h-5c-1.104,0-2-0.896-2-2s0.896-2,2-2h3v-3c0-1.104,0.896-2,2-2s2,0.896,2,2v5 C87.342,85.913,86.446,86.809,85.342,86.809z"></path> <path d="M85.342,73.19c-1.104,0-2-0.896-2-2v-8.618c0-1.104,0.896-2,2-2s2,0.896,2,2v8.618 C87.342,72.295,86.446,73.19,85.342,73.19z"></path> <path d="M85.342,55.954c-1.104,0-2-0.896-2-2v-8.618c0-1.104,0.896-2,2-2s2,0.896,2,2v8.618 C87.342,55.059,86.446,55.954,85.342,55.954z"></path> <path d="M85.342,38.719c-1.104,0-2-0.896-2-2v-8.618c0-1.104,0.896-2,2-2s2,0.896,2,2v8.618 C87.342,37.823,86.446,38.719,85.342,38.719z"></path> </g> <g id="Layer_1"> </g> </g></svg>`,
@@ -29,141 +34,110 @@ const customSVGs = {
 	game: `<svg width="64px" height="64px" viewBox="0 0 48 48" id="b" xmlns="http://www.w3.org/2000/svg" fill="#3d7eff" stroke="#3d7eff" stroke-width="1.584"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.c{fill:none;stroke:#0ab6ff;stroke-linecap:round;stroke-linejoin:round;}</style> </defs> <g> <path class="c" d="m16.8482,16.2143h-1.2569v-1.2569c0-.8449-.6849-1.5297-1.5297-1.5297s-1.5297.6849-1.5297,1.5297h0v1.2569h-1.2569c-.8449-.0006-1.5302.6838-1.5308,1.5287-.0006.8449.6838,1.5302,1.5287,1.5308h1.2591v1.2569c0,.8449.6849,1.5297,1.5297,1.5297s1.5297-.6849,1.5297-1.5297v-1.2569h1.2569c.8449-.0006,1.5293-.686,1.5287-1.5308-.0006-.844-.6847-1.5281-1.5287-1.5287Z"></path> <path class="c" d="m30.041,17.9681h0c1.2969,0,2.3482,1.0513,2.3482,2.3482h0c0,1.2969-1.0513,2.3482-2.3482,2.3482h0c-1.2969,0-2.3482-1.0513-2.3482-2.3482h0c0-1.2969,1.0513-2.3482,2.3482-2.3482Z"></path> <path class="c" d="m35.1856,12.8235h0c1.2969,0,2.3482,1.0513,2.3482,2.3482h0c0,1.2969-1.0513,2.3482-2.3482,2.3482h0c-1.2969,0-2.3482-1.0513-2.3482-2.3482h0c0-1.2969,1.0513-2.3482,2.3482-2.3482Z"></path> <path class="c" d="m33.2564,8.0004H14.7436c-5.3812,0-9.7436,4.3623-9.7436,9.7436s4.3624,9.7436,9.7436,9.7436c2.3721,0,4.5447-.8493,6.2345-2.2583h6.0438c1.6898,1.409,3.8623,2.2583,6.2345,2.2583,5.3812,0,9.7436-4.3624,9.7436-9.7436s-4.3624-9.7436-9.7436-9.7436Z"></path> </g> <g> <path class="c" d="m20.968,34.982s.2622,3.5124,4.0879,5.0176c-1.4738-2.7909,2.2578-5.2682,2.1637-7.0243.7526,1.4111.2822,2.979.2822,2.979,0,0,3.9511-5.2368-2.3205-8.4667,1.0035,1.8501,1.1916,1.9129,1.1916,3.7002"></path> <path class="c" d="m26.3157,30.0314s-2.8278,2.0032-2.5141,4.6373c-1.2927-1.3262-1.2544-1.8815-1.1916-3.7943-2.1158-.0042-.8592-2.1897.2509-3.3867-4.4214,1.662-4.1706,6.3971-2.3832,8.6862.4077-1.5679,1.2961-2.095,1.2961-2.095"></path> </g> </g></svg>`,
 	funcion: `<svg fill="#ffd91a" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="-27.08 -27.08 196.67 196.67" xml:space="preserve" stroke="#ffd91a"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M34.367,142.514c11.645,0,17.827-10.4,19.645-16.544c0.029-0.097,0.056-0.196,0.081-0.297 c4.236-17.545,10.984-45.353,15.983-65.58h17.886c3.363,0,6.09-2.726,6.09-6.09c0-3.364-2.727-6.09-6.09-6.09H73.103 c1.6-6.373,2.771-10.912,3.232-12.461l0.512-1.734c1.888-6.443,6.309-21.535,13.146-21.535c6.34,0,7.285,9.764,7.328,10.236 c0.27,3.343,3.186,5.868,6.537,5.579c3.354-0.256,5.864-3.187,5.605-6.539C108.894,14.036,104.087,0,89.991,0 C74.03,0,68.038,20.458,65.159,30.292l-0.49,1.659c-0.585,1.946-2.12,7.942-4.122,15.962H39.239c-3.364,0-6.09,2.726-6.09,6.09 c0,3.364,2.726,6.09,6.09,6.09H57.53c-6.253,25.362-14.334,58.815-15.223,62.498c-0.332,0.965-2.829,7.742-7.937,7.742 c-7.8,0-11.177-10.948-11.204-11.03c-0.936-3.229-4.305-5.098-7.544-4.156c-3.23,0.937-5.092,4.314-4.156,7.545 C13.597,130.053,20.816,142.514,34.367,142.514z"></path> <path d="M124.685,126.809c3.589,0,6.605-2.549,6.605-6.607c0-1.885-0.754-3.586-2.359-5.474l-12.646-14.534l12.271-14.346 c1.132-1.416,1.98-2.926,1.98-4.908c0-3.59-2.927-6.231-6.703-6.231c-2.547,0-4.527,1.604-6.229,3.684l-9.531,12.454L98.73,78.391 c-1.89-2.357-3.869-3.682-6.7-3.682c-3.59,0-6.607,2.551-6.607,6.609c0,1.885,0.756,3.586,2.357,5.471l11.799,13.592 L86.647,115.67c-1.227,1.416-1.98,2.926-1.98,4.908c0,3.589,2.926,6.229,6.699,6.229c2.549,0,4.53-1.604,6.229-3.682l10.19-13.4 l10.193,13.4C119.872,125.488,121.854,126.809,124.685,126.809z"></path> </g> </g> </g></svg>`
 }
-
 const svgShapes: SVGShape[] = [
-	{ custom: customSVGs.square },
-	{ custom: customSVGs.square2 },
-	{ custom: customSVGs.lines },
-	{ custom: customSVGs.game }
-]
+  { custom: customSVGs.square },
+  { custom: customSVGs.square2 },
+  { custom: customSVGs.lines },
+  { custom: customSVGs.game },
+  { custom: customSVGs.funcion }
+];
 
 const colorClasses: Record<ColorKey, string> = {
-	indigo: 'text-indigo-200',
-	pink: 'text-pink-200',
-	teal: 'text-teal-200',
-	amber: 'text-amber-200',
-	purple: 'text-purple-200',
-	gray: 'text-gray-200'
-}
+  indigo: 'text-indigo-200',
+  pink: 'text-pink-200',
+  teal: 'text-teal-200',
+  amber: 'text-amber-200',
+  purple: 'text-purple-200',
+  gray: 'text-gray-200'
+};
 
-// Opacidades más bajas
 const opacityClasses: Record<OpacityKey, string> = {
-	'5': 'opacity-5', // 5% opacidad
-	'10': 'opacity-10', // 10% opacidad
-	'15': 'opacity-15' // 15% opacidad
+  '5': 'opacity-5',
+  '10': 'opacity-10',
+  '15': 'opacity-15'
+};
+
+// Función para obtener clave aleatoria con tipo seguro
+function getRandomKey<T extends object>(obj: T): keyof T {
+  const keys = Object.keys(obj) as Array<keyof T>;
+  return keys[Math.floor(Math.random() * keys.length)];
 }
 
-function getObjectKeys<T extends object>(obj: T): Array<keyof T> {
-	return Object.keys(obj) as Array<keyof T>
-}
+// Generar elementos para esta sección
+const generateElements = (count: number) => {
+  const elements = [];
+  const existingPositions: {top: number, left: number}[] = [];
+  let attempts = 0;
+  const maxAttempts = 100;
 
-function getRandomElement<T>(array: T[]): T {
-	return array[Math.floor(Math.random() * array.length)]
-}
+  while (elements.length < count && attempts < maxAttempts) {
+    attempts++;
+    const top = 5 + Math.random() * 90;
+    const left = 5 + Math.random() * 90;
+    
+    // Verificar distancia mínima
+    const tooClose = existingPositions.some(pos => {
+      const distance = Math.sqrt(
+        Math.pow(pos.top - top, 2) + 
+        Math.pow(pos.left - left, 2)
+      );
+      return distance < CONFIG.minDistance;
+    });
+    
+    if (!tooClose) {
+      existingPositions.push({top, left});
+      elements.push({
+        color: getRandomKey(colorClasses),
+        opacity: getRandomKey(opacityClasses),
+        size: CONFIG.minSize + Math.random() * (CONFIG.maxSize - CONFIG.minSize),
+        top: `${top}%`,
+        left: `${left}%`,
+        shape: svgShapes[Math.floor(Math.random() * svgShapes.length)],
+        rotation: Math.floor(Math.random() * 360)
+      });
+    }
+  }
 
-// Función para verificar distancia mínima
-function isValidPosition(
-	newPos: { top: number; left: number },
-	existingPositions: { top: number; left: number }[],
-	minDistance: number
-): boolean {
-	return !existingPositions.some((pos) => {
-		const distance = Math.sqrt(
-			Math.pow(pos.top - newPos.top, 2) + Math.pow(pos.left - newPos.left, 2)
-		)
-		return distance < minDistance
-	})
-}
+  return elements;
+};
 
-// Generar elementos con distribución espaciada
-const generateElements = () => {
-	const colorKeys = getObjectKeys(colorClasses)
-	const opacityKeys = getObjectKeys(opacityClasses)
-	const elements = []
-	const existingPositions: { top: number; left: number }[] = []
-
-	Array.from({ length: CONFIG.sections }).forEach((_, sectionIndex) => {
-		const sectionHeight = 100 / CONFIG.sections
-		const baseTop = sectionIndex * sectionHeight
-
-		let elementsInSection = 0
-		let attempts = 0
-		const maxAttempts = 50
-
-		while (elementsInSection < CONFIG.elementsPerSection && attempts < maxAttempts) {
-			attempts++
-			const top = baseTop + 5 + Math.random() * (sectionHeight - 10)
-			const left = 5 + Math.random() * 90
-
-			if (isValidPosition({ top, left }, existingPositions, CONFIG.minDistance)) {
-				existingPositions.push({ top, left })
-				elementsInSection++
-
-				elements.push({
-					color: getRandomElement(colorKeys),
-					opacity: getRandomElement(opacityKeys),
-					size: CONFIG.minSize + Math.random() * (CONFIG.maxSize - CONFIG.minSize),
-					top: `${top}%`,
-					left: `${left}%`,
-					shape: getRandomElement(svgShapes),
-					rotation: Math.floor(Math.random() * 360),
-					delay: Math.floor(Math.random() * 300)
-				})
-			}
-		}
-	})
-
-	return elements
-}
-
-const elements = generateElements()
-const totalHeight = `${CONFIG.sections * 100}vh`
+const elements = generateElements(elementsCount);
 ---
 
-<div class='pointer-events-none absolute inset-0 -z-50 w-full' style={`height: ${totalHeight}`}>
-	{
-		elements.map((element, i) => (
-			<div
-				class={`${colorClasses[element.color]} ${opacityClasses[element.opacity]} absolute transition-all duration-700 ease-in-out hover:opacity-30`}
-				key={`svg-${i}`}
-				style={{
-					width: `${element.size}rem`,
-					height: `${element.size}rem`,
-					top: element.top,
-					left: element.left,
-					transform: `translate(-50%, -50%) rotate(${element.rotation}deg)`,
-					animation: `fadeIn 1s ease-out ${element.delay}ms both`,
-					'--rotation': `${element.rotation}deg`
-				}}
-			>
-				{element.shape.custom ? (
-					<div class='h-full w-full' set:html={element.shape.custom} />
-				) : (
-					<svg viewBox='0 0 24 24' fill='currentColor' class='h-full w-full'>
-						{element.shape.path && <path d={element.shape.path} />}
-						{element.shape.circle && (
-							<circle
-								cx={element.shape.circle.cx}
-								cy={element.shape.circle.cy}
-								r={element.shape.circle.r}
-							/>
-						)}
-					</svg>
-				)}
-			</div>
-		))
-	}
+<!-- Contenedor para una sola sección -->
+<div 
+  class="relative w-full pointer-events-none"
+  style={`height: ${sectionHeight}`}
+>
+  {
+    elements.map((element, i) => (
+      <div 
+        class={`${colorClasses[element.color]} ${opacityClasses[element.opacity]} absolute transition-all duration-500 ease-in-out hover:opacity-30`}
+        key={`svg-${i}`}
+        style={{
+          width: `${element.size}rem`,
+          height: `${element.size}rem`,
+          top: element.top,
+          left: element.left,
+          transform: `translate(-50%, -50%) rotate(${element.rotation}deg)`,
+          animation: `fadeIn 0.8s ease-out ${i * 100}ms both`
+        }}
+      >
+        <div class="w-full h-full" set:html={element.shape.custom} />
+      </div>
+    ))
+  }
 </div>
 
 <style>
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translate(-50%, -50%) scale(0.5) rotate(var(--rotation));
-		}
-		to {
-			opacity: var(--final-opacity);
-			transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
-		}
-	}
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+      transform: translate(-50%, -50%) scale(0.7) rotate(var(--rotation)); 
+    }
+    to { 
+      opacity: var(--final-opacity); 
+      transform: translate(-50%, -50%) scale(1) rotate(var(--rotation)); 
+    }
+  }
 </style>

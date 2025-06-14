@@ -2,13 +2,13 @@
 import PageLayout from '../layouts/BaseLayout.astro'
 import Section from '../components/Section.astro'
 import Card from '../components/Card.astro'
-import ProjectCard from '../components/ProjectCard.astro'
 import Label from '../components/Label.astro'
 import SkillLayout from '../components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
 import LineItem from '@/components/LineItem.astro'
 import CardEducation from '@/components/CardEducation.astro'
 import ProjectCardMinimalist from '@/components/ProjectCardMinimalist.astro'
+import BackGroundSection from '@/components/BackGroundSection.astro'
 
 import { experienceItem, educationData, certificationItem, projectItem } from '../utils/data'
 
@@ -31,6 +31,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 <div class='flex w-full flex-col gap-y-10'>
 		<section class='flex flex-col items-center gap-y-7'>
+			
 			<Image
 				src={astro}
 				alt='profile photo'
@@ -91,6 +92,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					</Label>
 				</div>
 			</div>
+			
 		</section>
 
 		<Section title='Sobre mi'>
@@ -112,6 +114,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					escalables, implementando APIs robustas, integración de datos y optimización de sistemas.
 				</p>
 			</Card>
+			
 		</Section>
 
 		
