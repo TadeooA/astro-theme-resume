@@ -9,6 +9,7 @@ import PostPreview from '@/components/blog/PostPreview.astro'
 import LineItem from '@/components/LineItem.astro'
 import CardEducation from '@/components/CardEducation.astro'
 import ProjectCardMinimalist from '@/components/ProjectCardMinimalist.astro'
+
 import { experienceItem, educationData, certificationItem, projectItem } from '../utils/data'
 
 import { Image } from 'astro:assets'
@@ -27,7 +28,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 ---
 
 <PageLayout meta={{ title: 'Inicio' }}>
-	<div class='flex w-full flex-col gap-y-10'>
+
+<div class='flex w-full flex-col gap-y-10'>
 		<section class='flex flex-col items-center gap-y-7'>
 			<Image
 				src={astro}
