@@ -42,6 +42,15 @@ interface CertificationItem {
   };
 }
 
+export interface ProjectProps {
+  name: string;
+  description: string;
+  url: string;
+  image: string;
+  tags?: string[];
+  metrics?: string[];
+}
+
 // En archivo timeline-data.ts
 export const experienceItem: ExperienceItem[] = [
     
@@ -90,9 +99,9 @@ export const experienceItem: ExperienceItem[] = [
   {
     institution: "Universidad Autonoma Metropolitana",
     degree: "Ingeniería en Matemáticas aplicadas",
-    fieldOfStudy: "Matematicas aplicadas",
+    fieldOfStudy: "Matemáticas aplicadas",
     description: [
-      "Especialización en fisica cuantica e inteligencia artificial",
+      "Especialización en fisica cuántica e inteligencia artificial",
     ],
     period: "2022 - presente",
     imagePath:'/src/assets/uam.png',
@@ -170,5 +179,120 @@ export const certificationItem:CertificationItem[]=[
       method: 'Code',
       code: 'MS-123-ABC-456'
     }
+  }
+]
+
+export const projectItem:ProjectProps []=[
+   {
+    name: "Sistema de Gestión Farmacéutica",
+    description: "Plataforma integral para DFLL con módulos de inventario, ventas y análisis predictivo",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Java", "Spring Boot", "React", "MySQL", "Redis"],
+    metrics: ["Reducción 40% tiempo procesos", "15K transacciones/día"]
+  },
+  {
+    name: "Microservicio de Recomendaciones",
+    description: "Motor de recomendación de productos para farmacias usando algoritmos ML",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Java 17", "Spring Cloud", "Python", "Apache Kafka"],
+    metrics: ["Precisión 89%", "25% aumento en ventas cruzadas"]
+  },
+  {
+    name: "Sistema  POS para celular en Flutter",
+    description: "Aplicación móvil para gestión de ventas con integración a microservicios y pasarelas de pago",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Flutter", "gRPC", "Stripe", "MercadoPago", "Spring Boot, laravel , golang"],
+    metrics: ["47s tiempo checkout", "0.8% errores manuales"]
+  },
+  {
+    name: "Migración y refactorizacion de codigo java 17 a Java 21",
+    description: "Actualización de código legacy",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Java 21", "Gradle", "JUnit 5"],
+    metrics: ["65% código convertido", "0 breaking changes"]
+  },
+  {
+    name: "API Gateway Farmacéutico",
+    description: "Centralización de servicios con seguridad JWT y rate limiting",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Spring Gateway", "OAuth2", "Docker", "Kubernetes"],
+    metrics: ["99.98% uptime", "< 150ms latency"]
+  },
+  {
+    name: "Sistema de Monitoreo de Precios",
+    description: "Rastreador de cambios en precios de proveedores con alertas",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Java", "Spring Batch", "Web Scraping", "Telegram API"],
+    metrics: ["Detección en <5min", "95% precisión"]
+  },
+  // {
+  //   name: "Webhooks Integration Hub",
+  //   description: "Sistema de comunicación bidireccional con proveedores y servicios externos",
+  //   url: "#",
+  //   image: "/images/projects/webhooks-hub.jpg",
+  //   tags: ["Golang", "WebSockets", "Kafka", "React"],
+  //   metrics: ["1,200 msg/seg", "< 1s procesamiento"]
+  // },
+  {
+    name: "Controlador de Máquina Abrasiva",
+    description: "Interfaz JavaFX para control de dispositivo electromecánico (Proyecto ESIME)",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["JavaFX", "Raspberry Pi", "IoT", "Modbus"],
+    metrics: ["Reducción 30% tiempo operación", "0 accidentes"]
+  },
+  {
+    name: "Data Warehouse Farmacéutico",
+    description: "Modelado avanzado para análisis de datos y business intelligence",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["PostgreSQL", "Apache Spark", "Power BI", "Data Vault"],
+    metrics: ["Consultas 10x más rápidas", "Unificación 7 fuentes"]
+  },
+  {
+    name: "Sistema de Facturación CFDI 4.0",
+    description: "Motor de generación masiva de facturas electrónicas con validación SAT",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Java", "Spring Batch", "Apache FOP", "SAT WS"],
+    metrics: ["300ms/factura", "70% menos errores"]
+  },
+  {
+    name: "Sistema de pasarela de pagos diverso",
+    description: "Pasarela de pagos unificada con múltiples proveedores",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Spring Boot", "Stripe", "PayPal", "SPEI","Mercado pago"],
+    metrics: ["99.5% éxito transacciones", "Soporte para diversos pagos e integraciones futuras"]
+  },
+  {
+    name: "Flutter POS Offline-First",
+    description: "Aplicación móvil para ventas con sincronización diferida",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["Flutter", "HiveDB", "gRPC", "SQLite"],
+    metrics: ["Funcionalidad 100% offline", "Sync en <30s"]
+  },
+  // {
+  //   name: "HL7 FHIR Interface Engine",
+  //   description: "Adaptador para interoperabilidad entre sistemas médicos",
+  //   url: "#",
+  //   image: "/images/projects/hl7-fhir.jpg",
+  //   tags: ["HAPI FHIR", "Kafka", "Docker Swarm"],
+  //   metrics: ["1.5K msg/seg", "Certificación HL7"]
+  // },
+  {
+    name: "Prescription OCR",
+    description: "Procesamiento de imágenes de recetas médicas con validación",
+    url: "#",
+    image: "/src/assets/about-astro.png",
+    tags: ["OpenCV", "Tesseract", "Spring Integration"],
+    metrics: ["80.7% precisión", "88.3% validación auto"]
   }
 ]

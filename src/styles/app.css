@@ -19,57 +19,68 @@
 @layer base {
 	:root {
 		--background: 210 33% 99%;
-		--foreground: 240 10% 3.9%;
-		--card: 0 0% 100%;
-		--card-foreground: 240 10% 3.9%;
-		--popover: 0 0% 100%;
-		--popover-foreground: 240 10% 3.9%;
-		--primary: 240 5.9% 10%;
-		--primary-foreground: 0 0% 98%;
-		--secondary: 240 4.8% 95.9%;
-		--secondary-foreground: 240 5.9% 10%;
-		--muted: 240 4.8% 95.9%;
-		--muted-foreground: 240 3.8% 46.1%;
-		--accent: 240 4.8% 95.9%;
-		--accent-foreground: 240 5.9% 10%;
-		--destructive: 0 72.22% 50.59%;
-		--destructive-foreground: 0 0% 98%;
-		--border: 240 5.9% 90%;
-		--input: 240 5.9% 90%;
-		--ring: 240 5.9% 10%;
-		--radius: 0.5rem;
-	}
-	.dark {
-		  /* Base */
-  --background: 225 25% 14%;        /* #1a2035 - Azul oscuro frío */
-  --foreground: 0 0% 98%;           /* #f8fafc - Blanco puro (texto principal) */
+ /* Base */
+  --background: 0 0% 98%;           /* #f8f8f8 - Blanco ligeramente cálido */
+  --foreground: 212 12% 20%;        /* #24292e - Gris oscuro (texto principal) */
 
   /* Componentes */
-  --card: 225 28% 12%;              /* #151a2a - Más oscuro que el fondo, con tono azul */
-  --card-foreground: 0 0% 98%;      /* Texto claro en tarjetas */
-  --popover: 225 28% 10%;           /* #101523 - Para elementos emergentes */
-  --popover-foreground: 0 0% 98%;
+  --card: 0 0% 100%;                /* #ffffff - Tarjetas blancas */
+  --card-foreground: 212 12% 20%;   /* Texto oscuro en tarjetas */
+  --popover: 0 0% 96%;              /* #f6f6f6 - Fondo de popovers */
+  --popover-foreground: 212 12% 20%;
 
   /* Interactivos */
-  --primary: 212 80% 60%;           /* #58a6ff - Azul brillante (botones primarios) */
-  --primary-foreground: 225 25% 14%;/* Fondo oscuro para contraste */
-  --secondary: 225 20% 20%;         /* #232a45 - Azul intermedio (hover/segundarios) */
-  --secondary-foreground: 0 0% 98%;
+  --primary: 208 88% 58%;           /* #58a6ff - Azul GitHub (botones) */
+  --primary-foreground: 0 0% 100%;  /* Texto blanco sobre botones */
+  --secondary: 210 20% 96%;         /* #f3f4f6 - Gris claro (hover) */
+  --secondary-foreground: 212 12% 20%;
 
   /* Neutrales */
-  --muted: 225 15% 25%;            /* #2a3152 - Gris azulado (para fondos suaves) */
-  --muted-foreground: 225 10% 65%;  /* #9ca3c2 - Texto secundario */
-  --accent: 225 20% 22%;            /* #1e2542 - Para resaltes sutiles */
-  --accent-foreground: 0 0% 98%;
+  --muted: 210 14% 92%;             /* #eaeef2 - Gris muy claro */
+  --muted-foreground: 212 10% 40%;  /* #6a737d - Texto secundario */
+  --accent: 210 20% 94%;            /* #f0f2f5 - Resaltes sutiles */
+  --accent-foreground: 212 12% 20%;
 
   /* Estados */
-  --destructive: 0 70% 40%;         /* #dc2626 - Rojo intenso */
-  --destructive-foreground: 0 0% 98%;
-  --border: 225 20% 25%;            /* #252d4d - Bordes visibles pero discretos */
-  --input: 225 20% 20%;             /* Coherente con --secondary */
+  --destructive: 0 72% 54%;         /* #f85149 - Rojo GitHub (errores) */
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 14% 89%;            /* #d8dee4 - Bordes claros */
+  --input: 210 20% 96%;             /* Coherente con --secondary */
 
   /* Focus */
-  --ring: 212 80% 60%;              /* Mismo que primary para consistencia */
+  --ring: 208 88% 58%;    
+	}
+	.dark {
+ /* Base */
+  --background: 240 9% 13%;         /* #1e1e20 - Fondo casi negro */
+  --foreground: 0 0% 93%;            /* #ececf1 - Blanco ligeramente cálido */
+
+  /* Componentes */
+  --card: 240 8% 10%;               /* #18181c - Tarjetas oscuras */
+  --card-foreground: 0 0% 93%;
+  --popover: 240 10% 8%;            /* #121214 - Menús emergentes */
+  --popover-foreground: 0 0% 93%;
+
+  /* Interactivos */
+  --primary: 158 64% 52%;           /* #10a37f - Verde ChatGPT (botones) */
+  --primary-foreground: 240 9% 13%; /* Texto oscuro sobre verde */
+  --secondary: 240 7% 17%;          /* #2a2b32 - Hover/zonas interactivas */
+  --secondary-foreground: 0 0% 93%;
+
+  /* Neutrales */
+  --muted: 240 6% 22%;              /* #343541 - Gris oscuro (ej. sidebar) */
+  --muted-foreground: 240 4% 60%;   /* #8e8ea0 - Texto deshabilitado */
+  --accent: 240 7% 20%;             /* #2d2d39 - Resaltes sutiles */
+  --accent-foreground: 0 0% 93%;
+
+  /* Estados */
+  --destructive: 0 84% 60%;         /* #ef4146 - Rojo ChatGPT */
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 6% 21%;            /* #353641 - Bordes sutiles */
+  --input: 240 7% 17%;             /* Coherente con --secondary */
+
+  /* Focus */
+  --ring: 158 64% 52%;             /* Verde ChatGPT para anillos de focus */
 	}
 }
 

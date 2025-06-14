@@ -8,7 +8,8 @@ import SkillLayout from '../components/SkillLayout.astro'
 import PostPreview from '@/components/blog/PostPreview.astro'
 import LineItem from '@/components/LineItem.astro'
 import CardEducation from '@/components/CardEducation.astro'
-import { experienceItem, educationData, certificationItem } from '../utils/data'
+import ProjectCardMinimalist from '@/components/ProjectCardMinimalist.astro'
+import { experienceItem, educationData, certificationItem, projectItem } from '../utils/data'
 
 import { Image } from 'astro:assets'
 import astro from '../assets/about-astro.png'
@@ -17,7 +18,7 @@ import { getAllPosts, sortMDByDate } from '@/utils'
 
 const languages = ['Español | Nativo', 'Ingles | B1']
 const frontend = ['React', 'Angular', 'TypeScript']
-const backend = ['Java', 'Spring', 'Golang', 'PHP']
+const backend = ['Java', 'Spring', 'Golang']
 const others = ['Cobol', 'Z/os']
 
 const MAX_POSTS = 10
@@ -155,23 +156,20 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 
 <Section title='Proyectos'>
-			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
-				<ProjectCard
-					href='https://www.google.com'
-					heading='Consectetur'
-					subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit.'
-					imagePath='/src/assets/coming-soon.png'
-					altText='Example'
-					class='w-full sm:w-1/2'
-				/>
-				<ProjectCard
-					as='div'
-					heading='Coming soon...'
-					subheading=''
-					imagePath='/src/assets/coming-soon.png'
-					altText='Lorem, ipsum dolor sit'
-					class='w-full sm:w-1/2'
-				/>
+			<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+				  {projectItem.map((item, index) => (
+    <ProjectCardMinimalist
+      name={item.name}
+      description={item.description}
+      url={item.url}
+      image={item.image}
+      tags={item.tags}
+      metrics={item.metrics}
+      data-index={index}
+      class="hover:scale-[1.02] transition-transform duration-300"
+    />
+  ))}
+			
 			</div>
 		</Section>
 
