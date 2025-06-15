@@ -13,13 +13,13 @@ interface SVGShape {
 
 type ColorKey = 'indigo' | 'pink' | 'teal' | 'amber' | 'purple' | 'gray'
 type OpacityKey = '5' | '10' | '15' // Opacidades más bajas
-
+const currentPage = Astro.url.pathname;
 const CONFIG = {
 	elementsPerSection: 2, // Reducido para menos densidad
 	minSize: 2,
 	maxSize: 2,
 	minDistance: 30, // Distancia mínima entre elementos (en %)
-	sections: 6
+	sections: currentPage === '/' ? 6 : 1, // Número de secciones
 }
 
 const customSVGs = {
@@ -52,6 +52,7 @@ const opacityClasses: Record<OpacityKey, string> = {
 	'10': 'opacity-10', // 10% opacidad
 	'15': 'opacity-15' // 15% opacidad
 }
+
 
 function getObjectKeys<T extends object>(obj: T): Array<keyof T> {
 	return Object.keys(obj) as Array<keyof T>

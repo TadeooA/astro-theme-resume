@@ -9,6 +9,8 @@ import LineItem from '@/components/LineItem.astro'
 import CardEducation from '@/components/CardEducation.astro'
 import ProjectCardMinimalist from '@/components/ProjectCardMinimalist.astro'
 import BackGroundSection from '@/components/BackGroundSection.astro'
+import SectionSvg from '@/components/SectionSvg.astro'
+import CardCertification from '@/components/CardCertification.astro'
 
 import { experienceItem, educationData, certificationItem, projectItem } from '../utils/data'
 
@@ -28,10 +30,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 ---
 
 <PageLayout meta={{ title: 'Inicio' }}>
-
-<div class='flex w-full flex-col gap-y-10'>
-		<section class='flex flex-col items-center gap-y-7'>
-			
+	<div class='flex w-full flex-col gap-y-10'>
+		<sectionSvg class='flex flex-col items-center gap-y-7' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
 			<Image
 				src={astro}
 				alt='profile photo'
@@ -92,10 +92,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					</Label>
 				</div>
 			</div>
-			
-		</section>
+		</sectionSvg>
 
-		<Section title='Sobre mi'>
+		<SectionSvg title='Sobre mi' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
 			<Card
 				heading=''
 				subheading=''
@@ -114,11 +113,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					escalables, implementando APIs robustas, integración de datos y optimización de sistemas.
 				</p>
 			</Card>
-			
-		</Section>
+		</SectionSvg>
 
-		
-		<Section title='Educación'>
+		<SectionSvg title='Educación' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
 			{
 				educationData.map((item, index) => (
 					<CardEducation
@@ -144,9 +141,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					</CardEducation>
 				))
 			}
-		</Section>
+		</SectionSvg>
 
-		<Section title='Experiencia'>
+		<SectionSvg title='Experiencia' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
 			<Card
 				heading=''
 				subheading=''
@@ -157,61 +154,61 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			>
 				<LineItem items={experienceItem} />
 			</Card>
-		</Section>
+		</SectionSvg>
 
-
-<Section title='Proyectos'>
-			<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-				  {projectItem.map((item, index) => (
-    <ProjectCardMinimalist
-      name={item.name}
-      description={item.description}
-      url={item.url}
-      image={item.image}
-      tags={item.tags}
-      metrics={item.metrics}
-      data-index={index}
-      class="hover:scale-[1.02] transition-transform duration-300"
-    />
-  ))}
-			
+		<SectionSvg title='Proyectos' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
+			<div class='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
+				{
+					projectItem.map((item, index) => (
+						<ProjectCardMinimalist
+							name={item.name}
+							description={item.description}
+							url={item.url}
+							image={item.image}
+							tags={item.tags}
+							metrics={item.metrics}
+							data-index={index}
+							class='transition-transform duration-300 hover:scale-[1.02]'
+						/>
+					))
+				}
 			</div>
-		</Section>
+		</SectionSvg>
 
-		<Section title='Certificaciones'>
-			<Card
-				as='a'
-				heading='Lorem ipsum, dolor sit amet consectetur adipisicing.'
-				subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta magni consequuntur corrupti.'
-				date='Mar 2024 - Mar 2024'
-				imagePath='/src/assets/about-astro.png'
-				altText='Lorem, ipsum dolor sit'
-				imageClass='h-11 w-auto md:-left-16'
-				href='https://www.google.com'
-			/>
-			<Card
-				as='a'
-				heading='Lorem ipsum, dolor sit amet'
-				subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta.'
-				date='Mar 2029 - Mar 2032'
-				imagePath='/src/assets/about-astro.png'
-				altText='Lorem, ipsum dolor sit'
-				imageClass='h-11 w-auto md:-left-16'
-				href='https://www.google.com'
-			/>
-		</Section>
+		<SectionSvg title='Certificaciones' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
+			
+		<CardCertification
+	  institution="IBM"
+  degree="Data Science Professional Certificate"
+  period="Junio 2023"
+  isCompleted={true}
+  isCertification={true}
+  credentialId="ABCD-1234"
+  credentialUrl="https://www.credly.com/badges/12345"
+  issuerLogo="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"></CardCertification>
 
+  	<CardCertification
+	 institution="Google Cloud"
+  degree="Professional Cloud Architect"
+  period="Marzo 2023"
+  isCompleted={true}
+  isCertification={true}
+  credentialId="GCP-5678"
+  credentialUrl="https://www.credly.com/badges/67890"
+  issuerLogo="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+  fieldOfStudy="Cloud Computing"></CardCertification>
+		</SectionSvg>
 
-		<Section title='Habilidades'>
+		<SectionSvg title='Habilidades' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
 			<SkillLayout title='Idiomas' skills={languages} />
 			<SkillLayout title='Frontend' skills={frontend} />
 			<SkillLayout title='Backend' skills={backend} />
 			<SkillLayout title='Otros' skills={others} />
-		</Section>
+		</SectionSvg>
 
 		{
 			allPostsByDate.length > 0 && (
-				<Section title='Posts'>
+				<SectionSvg title='Posts' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
 					<ul class='flex flex-col gap-y-2'>
 						{allPostsByDate.map((p) => (
 							<li class='flex flex-col gap-x-2 sm:flex-row'>
@@ -219,12 +216,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 							</li>
 						))}
 					</ul>
-				</Section>
+				</SectionSvg>
 			)
 		}
 	</div>
 
 	<div></div>
-
-	
 </PageLayout>
