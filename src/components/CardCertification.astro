@@ -76,11 +76,11 @@ const containerClasses = cn(
       <div class="flex flex-col md:flex-row gap-4">
         {/* Prioridad: issuerLogo (para certificaciones) > imagePath > icon */}
         {(issuerLogo && isCertification) ? (
-          <div class="flex-shrink-0">
+          <div class="flex-shrink-0 rounded-2xl">
             <img
               src={issuerLogo}
               alt={`${institution} logo`}
-              class={cn('w-16 h-16 object-contain rounded-2xl', imageClass)}
+              class={cn('w-16 h-16 object-contain rounded-xl', imageClass)}
               loading="eager"
               width={64}
               height={64}

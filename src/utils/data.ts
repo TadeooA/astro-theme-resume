@@ -185,7 +185,7 @@ export const certificationItem:CertificationItem[]=[
 export const projectItem:ProjectProps []=[
    {
     name: "Sistema de Gestión Farmacéutica",
-    description: "Plataforma integral para DFLL con módulos de inventario, ventas y análisis predictivo",
+    description: "Plataforma integral para DFLL con módulos de inventario, ventas, compras y análisis predictivo",
     url: "#",
     image: "/src/assets/about-astro.png",
     tags: ["Java", "Spring Boot", "React", "MySQL", "Redis"],
@@ -229,7 +229,7 @@ export const projectItem:ProjectProps []=[
     url: "#",
     image: "/src/assets/about-astro.png",
     tags: ["Java", "Spring Batch", "Web Scraping", "Telegram API"],
-    metrics: ["Detección en <5min", "95% precisión"]
+    metrics: ["Detección en <5min", "95% alertas precisas","30% ahorro en compras"]
   },
   // {
   //   name: "Webhooks Integration Hub",
@@ -245,40 +245,40 @@ export const projectItem:ProjectProps []=[
     url: "#",
     image: "/src/assets/about-astro.png",
     tags: ["JavaFX", "Raspberry Pi", "IoT", "Modbus"],
-    metrics: ["Reducción 30% tiempo operación", "0 accidentes"]
+    metrics: ["Reducción 30% tiempo operación", "0 accidentes","100% precisión en corte"]
   },
-  {
-    name: "Data Warehouse Farmacéutico",
-    description: "Modelado avanzado para análisis de datos y business intelligence",
-    url: "#",
-    image: "/src/assets/about-astro.png",
-    tags: ["PostgreSQL", "Apache Spark", "Power BI", "Data Vault"],
-    metrics: ["Consultas 10x más rápidas", "Unificación 7 fuentes"]
-  },
+  // {
+  //   name: "Data Warehouse Farmacéutico",
+  //   description: "Modelado avanzado para análisis de datos y business intelligence",
+  //   url: "#",
+  //   image: "/src/assets/about-astro.png",
+  //   tags: ["PostgreSQL", "Apache Spark", "Power BI", "Data Vault"],
+  //   metrics: ["Consultas 10x más rápidas", "Unificación 7 fuentes"]
+  // },
   {
     name: "Sistema de Facturación CFDI 4.0",
     description: "Motor de generación masiva de facturas electrónicas con validación SAT",
     url: "#",
     image: "/src/assets/about-astro.png",
     tags: ["Java", "Spring Batch", "Apache FOP", "SAT WS"],
-    metrics: ["300ms/factura", "70% menos errores"]
+    metrics: ["300ms/factura", "80% menos errores"]
   },
   {
-    name: "Sistema de pasarela de pagos diverso",
+    name: "Sistema de pasarela de pagos unificada",
     description: "Pasarela de pagos unificada con múltiples proveedores",
     url: "#",
     image: "/src/assets/about-astro.png",
     tags: ["Spring Boot", "Stripe", "PayPal", "SPEI","Mercado pago"],
     metrics: ["99.5% éxito transacciones", "Soporte para diversos pagos e integraciones futuras"]
   },
-  {
-    name: "Flutter POS Offline-First",
-    description: "Aplicación móvil para ventas con sincronización diferida",
-    url: "#",
-    image: "/src/assets/about-astro.png",
-    tags: ["Flutter", "HiveDB", "gRPC", "SQLite"],
-    metrics: ["Funcionalidad 100% offline", "Sync en <30s"]
-  },
+  // {
+  //   name: "Flutter POS Offline-First",
+  //   description: "Aplicación móvil para ventas con sincronización diferida",
+  //   url: "#",
+  //   image: "/src/assets/about-astro.png",
+  //   tags: ["Flutter", "HiveDB", "gRPC", "SQLite"],
+  //   metrics: ["Funcionalidad 100% offline", "Sync en <30s"]
+  // },
   // {
   //   name: "HL7 FHIR Interface Engine",
   //   description: "Adaptador para interoperabilidad entre sistemas médicos",
@@ -288,11 +288,11 @@ export const projectItem:ProjectProps []=[
   //   metrics: ["1.5K msg/seg", "Certificación HL7"]
   // },
   {
-    name: "Prescription OCR",
+    name: "Procesador de imagenes de recetas",
     description: "Procesamiento de imágenes de recetas médicas con validación",
     url: "#",
     image: "/src/assets/about-astro.png",
-    tags: ["OpenCV", "Tesseract", "Spring Integration"],
-    metrics: ["80.7% precisión", "88.3% validación auto"]
+    tags: ["OpenCV", "Django", "Python"],
+    metrics: ["80.7% precisión", "Validación 100% recetas", "Reducción 50% errores manuales"]
   }
 ]

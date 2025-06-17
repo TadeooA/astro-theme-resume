@@ -45,7 +45,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				</h1>
 				<a
 					href='https://github.com/srleom/astro-theme-resume.git'
-					class='flex flex-row items-center gap-x-3 rounded-sm border border-2 px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md dark:border-white'
+					class='flex flex-row items-center gap-x-3 rounded-xl border border-1 border-dashed border-gray-400 px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md dark:border-white'
 				>
 					<span class='relative flex items-center justify-center'>
 						<span
@@ -188,15 +188,26 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
   issuerLogo="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"></CardCertification>
 
   	<CardCertification
-	 institution="Google Cloud"
-  degree="Professional Cloud Architect"
-  period="Marzo 2023"
+	 institution="Codecademy"
+  degree="Full Stack Engineer"
+  period="Julio 2024"
   isCompleted={true}
   isCertification={true}
-  credentialId="GCP-5678"
-  credentialUrl="https://www.credly.com/badges/67890"
-  issuerLogo="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
-  fieldOfStudy="Cloud Computing"></CardCertification>
+  credentialId="D3165FB3-8"
+  credentialUrl="https://www.codecademy.com/profiles/mega5047895884/certificates/ffd0f42cce1a44e9a0108b365047a0a6"
+  imagePath="/src/assets/codecademi2.png"
+  fieldOfStudy="Backend and frontend"></CardCertification>
+
+  	<CardCertification
+	 institution="Codecademy"
+  degree="Data Scientist"
+  period="Julio 2024"
+  isCompleted={true}
+  isCertification={true}
+  credentialId="6B2E6A29-C"
+  credentialUrl="https://www.codecademy.com/profiles/mega5047895884/certificates/8e9e59de3f924b33ad2371faf667129b"
+  imagePath="/src/assets/codecademi2.png"
+  fieldOfStudy="Machine Learning"></CardCertification>
 		</SectionSvg>
 
 		<SectionSvg title='Habilidades' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
