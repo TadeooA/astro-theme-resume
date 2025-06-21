@@ -176,16 +176,17 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 		</SectionSvg>
 
 		<SectionSvg title='Certificaciones' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
-			
+			<div class='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'> 
 		<CardCertification
-	  institution="IBM"
-  degree="Data Science Professional Certificate"
-  period="Junio 2023"
+	  institution="Atlassian University-Coursera"
+  degree="Agile with Atlassian Jira"
+  period="Junio 2025"
   isCompleted={true}
+  imagePath="/src/assets/atlisanCursera.png"
   isCertification={true}
-  credentialId="ABCD-1234"
-  credentialUrl="https://www.credly.com/badges/12345"
-  issuerLogo="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"></CardCertification>
+  credentialId="VGN26SV6173Z"
+  credentialUrl="https://coursera.org/share/20555233a047a3de00708b3f89fec10b"
+  ></CardCertification>
 
   	<CardCertification
 	 institution="Codecademy"
@@ -208,6 +209,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
   credentialUrl="https://www.codecademy.com/profiles/mega5047895884/certificates/8e9e59de3f924b33ad2371faf667129b"
   imagePath="/src/assets/codecademi2.png"
   fieldOfStudy="Machine Learning"></CardCertification>
+   </div> 
 		</SectionSvg>
 
 		<SectionSvg title='Habilidades' rotation1={-15} rotation2={25} opacity1={0.6} opacity2={0.6}>
