@@ -36,41 +36,46 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 if (imagePath && !images[imagePath]) {
   throw new Error(`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,svg}"`);
 }
-
-const containerClasses = cn(
-  'rounded-2xl border-2 border-dashed bg-primary-foreground px-5 py-4',
-  'transition-all hover:border-foreground/25 hover:shadow-sm',
-  'dark:border-gray-500 dark:bg-neutral-950 dark:hover:border-gray-500',
-  'flex flex-col items-center text-center gap-4'
-);
 ---
 
-<div class={containerClasses}>
-  {imagePath && (
-    <Image
-      src={images[imagePath]()}
-      alt={altText}
-      class={cn('w-24 h-24 object-contain rounded-2xl', imageClass)}
-      loading="eager"
-      width={96}
-      height={96}
-    />
-  )}
 
-  <div class="flex flex-col gap-1">
-    <h2 class="text-base font-semibold text-foreground dark:text-white">{degree}</h2>
-    <p class="text-sm text-muted-foreground dark:text-white">{institution}</p>
-    {fieldOfStudy && (
-      <p class="text-sm text-muted-foreground dark:text-white">{fieldOfStudy}</p>
+<div class="relative group flex flex-col items-center text-center gap-4 p-7 sm:p-4 h-full rounded-2xl border-2 border-dashed overflow-hidden">
+  
+  <!-- Fondo translúcido con hover y soporte dark mode -->
+  <span class="absolute inset-0 z-20 block w-full h-full duration-300 ease-out bg-transparent border border-transparent border-dashed group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:border group-hover:border-neutral-300 dark:group-hover:border-neutral-600 group-hover:border-dashed rounded-2xl group-hover:bg-white/80 dark:group-hover:bg-neutral-950/80 backdrop-blur-sm"></span>
+  
+  <!-- Borde exterior que se desplaza al hacer hover -->
+  <span class="absolute inset-0 z-10 block w-full h-full duration-300 ease-out border border-dashed rounded-2xl border-neutral-300 dark:border-neutral-600 group-hover:translate-x-1 group-hover:translate-y-1"></span>
+
+  <!-- Contenido principal -->
+  <div class="relative z-30 flex flex-col items-center text-center gap-4">
+    
+    {imagePath && (
+      <Image
+        src={images[imagePath]() }
+        alt={altText}
+        class={cn('w-24 h-24 object-contain rounded-2xl', imageClass)}
+        loading="eager"
+        width={96}
+        height={96}
+      />
     )}
-    <p class="text-sm text-muted-foreground dark:text-white">{period}</p>
-    {credentialId && (
-      <p class="text-xs text-gray-400 dark:text-gray-400">ID: {credentialId}</p>
-    )}
-    {credentialUrl && (
-      <a href={credentialUrl} target="_blank" rel="noopener noreferrer" class="text-blue-500 font-semibold text-sm hover:underline">
-        Ver Credencial
-      </a>
-    )}
+
+    <div class="flex flex-col gap-1">
+      <h2 class="text-base font-semibold text-neutral-900 dark:text-neutral-100">{degree}</h2>
+      <p class="text-sm text-neutral-600 dark:text-neutral-400">{institution}</p>
+      {fieldOfStudy && (
+        <p class="text-sm text-neutral-600 dark:text-neutral-400">{fieldOfStudy}</p>
+      )}
+      <p class="text-sm text-neutral-600 dark:text-neutral-400">{period}</p>
+      {credentialId && (
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">ID: {credentialId}</p>
+      )}
+      {credentialUrl && (
+        <a href={credentialUrl} target="_blank" rel="noopener noreferrer" class="text-blue-500 font-semibold text-sm hover:underline">
+          Ver Credencial
+        </a>
+      )}
+    </div>
   </div>
 </div>

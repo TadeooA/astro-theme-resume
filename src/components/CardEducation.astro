@@ -38,16 +38,14 @@ const {
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,svg}')
 
-if (imagePath) {
-  if (!images[imagePath]) {
-    throw new Error(`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,svg}"`)
-  }
+if (imagePath && !images[imagePath]) {
+  throw new Error(`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,svg}"`)
 }
 
 const containerClasses = cn(
   className,
-  'relative rounded-2xl border-2 border-dashed bg-primary-foreground px-5 py-4',
-  'transition-all hover:border-foreground/25 hover:shadow-sm',
+  'relative rounded-2xl border-2 border-dashed backdrop-blur-sm bg-transparent  p-8 md:p-6',
+  'transition-all hover:border-neutral-300 dark:hover:border-neutral-600 hover:bg-white/80 dark:hover:bg-neutral-950/80',
   !isCompleted && 'border-yellow-400/50',
   href && 'hover:shadow-lg'
 );
@@ -57,13 +55,13 @@ const containerClasses = cn(
   {Tag === 'a' ? (
     <a 
       href={href}
-      class={containerClasses}
+      class={cn(containerClasses, 'group')}
     >
-      <div class="flex flex-col md:flex-row gap-4">
+      <div class="flex flex-col md:flex-row gap-4 ">
         {imagePath && (
           <div class="flex-shrink-0">
             <Image
-              src={images[imagePath]()}
+              src={images[imagePath]() }
               alt={altText}
               class={cn('w-16 h-16 object-contain rounded-lg', imageClass)}
               loading="eager"
@@ -74,7 +72,7 @@ const containerClasses = cn(
         )}
 
         {!imagePath && icon && (
-          <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 bg-primary/10 rounded-lg">
+          <div class="flex-shrink-0 flex items-center  justify-center w-16 h-16 bg-primary/10 rounded-lg">
             <i class={cn(icon, 'text-2xl text-primary')}></i>
           </div>
         )}
@@ -109,12 +107,12 @@ const containerClasses = cn(
       </div>
     </a>
   ) : (
-    <div class={containerClasses}>
+    <div class={cn(containerClasses, 'group')}>
       <div class="flex flex-col md:flex-row gap-4">
         {imagePath && (
           <div class="flex-shrink-0">
             <Image
-              src={images[imagePath]()}
+              src={images[imagePath]() }
               alt={altText}
               class={cn('w-16 h-16 object-contain rounded-lg', imageClass)}
               loading="eager"
@@ -161,3 +159,4 @@ const containerClasses = cn(
     </div>
   )}
 </Fragment>
+
